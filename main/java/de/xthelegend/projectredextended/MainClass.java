@@ -38,6 +38,7 @@ import de.xthelegend.projectredextended.api.RedExtendedAPI;
 import de.xthelegend.projectredextended.api.projectRedExtendedAPI;
 import de.xthelegend.projectredextended.lib.GUIHandler;
 import de.xthelegend.projectredextended.lib.base.GUI_NUMBER_IDS;
+import de.xthelegend.projectredextended.nei.NEIAdd;
 import de.xthelegend.projectredextended.networking.MainNetworkHandler;
 import de.xthelegend.projectredextended.project_table.TileProjectTable;
 import de.xthelegend.projectredextended.seed_bag.ItemSeedBag;
@@ -115,7 +116,7 @@ public class MainClass
     public static boolean enableDebugger = true;
     public static final Item Namefinder = new de.xthelegend.projectredextended.debug.Namefinder();
     
-    
+   
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -182,6 +183,7 @@ public class MainClass
     public void postInit(FMLPostInitializationEvent event)
     {
     	PostCrafting();
+    	
     }
     
     public static ServerConfigurationManager serverConfigManager = null;
@@ -216,7 +218,7 @@ public class MainClass
     
     public static void AlloyFurnaceMgr()
     {
-    	IAlloyFurnaceRegistry AlloyFurnaceRegistry = projectRedExtendedAPI.getInstance().getAlloyFurnaceRegistry();
+    	
     	
     	//AlloyFurnaceRegistry.addRecipe(REDINGOT().makeStack(1), new ItemStack(Items.redstone, 4), Items.iron_ingot);
     	//AlloyFurnaceRegistry.addRecipe(OreDictionary.getOreNames(), new ItemStack(Items.redstone, 4), Items.iron_ingot);
@@ -224,9 +226,42 @@ public class MainClass
     
     public static void PostCrafting()
     {
+    	
     	ItemStack silver_ingot = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 54);
+		ItemStack red_alloy_ingot  = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 10);
+		ItemStack copper_ingot  = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 52);
+		ItemStack blue_alloy_ingot  = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 55);
+		ItemStack nikolite_dust  = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 56);
+		ItemStack nikolite_dust4  = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 4, (short) 56);
+		ItemStack silicon_boule  = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 11);
+		ItemStack red_doped_wafer = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 13);
+				ItemStack blue_doped_wafer = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 59);
+				ItemStack silicon_wafer = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 12);
 		
 		GameRegistry.addRecipe(new ItemStack(ItemAthame), "A", "B", 'A', silver_ingot, 'B', Items.stick );
+		
+		IAlloyFurnaceRegistry AlloyFurnaceRegistry = projectRedExtendedAPI.getInstance().getAlloyFurnaceRegistry();
+		
+	      AlloyFurnaceRegistry.addRecipe(red_alloy_ingot, new ItemStack(Items.redstone, 4), Items.iron_ingot);
+	      AlloyFurnaceRegistry.addRecipe(red_alloy_ingot, new ItemStack(Items.redstone, 4), copper_ingot);
+
+	      AlloyFurnaceRegistry.addRecipe(blue_alloy_ingot, nikolite_dust4, silver_ingot);
+
+
+	      //AlloyFurnaceRegistry.addRecipe(new ItemStack(brass_ingot, 4), new ItemStack(copper_ingot, 3), zinc_ingot);
+	      AlloyFurnaceRegistry.addRecipe(silicon_boule, new ItemStack(Items.coal, 8), new ItemStack(Blocks.sand, 8));
+
+	      AlloyFurnaceRegistry.addRecipe(red_doped_wafer, new ItemStack(Items.redstone, 4), silicon_wafer);
+	      AlloyFurnaceRegistry.addRecipe(blue_doped_wafer, nikolite_dust4, silicon_wafer);
+
+
+	      AlloyFurnaceRegistry.addRecyclingRecipe(new ItemStack(Blocks.iron_block), new ItemStack(Items.iron_ingot, 9));
+	      AlloyFurnaceRegistry.addRecyclingRecipe(new ItemStack(Blocks.gold_block), new ItemStack(Items.gold_ingot, 9));
+	      AlloyFurnaceRegistry.addRecyclingRecipe(new ItemStack(Items.iron_ingot));
+	      AlloyFurnaceRegistry.addRecyclingRecipe(new ItemStack(Items.gold_ingot));
+	      AlloyFurnaceRegistry.addRecyclingRecipe(new ItemStack(Items.gold_nugget));
+    
+    
     }
     
     public static Enchantment vorpal;
@@ -243,6 +278,8 @@ public class MainClass
     {
     	OreDictionary.registerOre("dyeBlue", new ItemStack(MainClass.ItemIndigoDye));
     }
+    
+ 
     
     
 }
