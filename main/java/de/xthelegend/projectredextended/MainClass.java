@@ -181,7 +181,7 @@ public class MainClass
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-    	
+    	PostCrafting();
     }
     
     public static ServerConfigurationManager serverConfigManager = null;
@@ -200,9 +200,7 @@ public class MainClass
     {
     	
     	
-    		ItemStack silver_ingot = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 54);
     		
-    		GameRegistry.addRecipe(new ItemStack(ItemAthame), "A", "B", 'A', silver_ingot, 'B', Items.stick );
     	
     	
     	//ItemStack SilverIngot = new ItemStack(mrtjp.projectred.ProjecwtRedCore.itemPart() ,54 ,0);
@@ -214,6 +212,8 @@ public class MainClass
     
     }
     
+    
+    
     public static void AlloyFurnaceMgr()
     {
     	IAlloyFurnaceRegistry AlloyFurnaceRegistry = projectRedExtendedAPI.getInstance().getAlloyFurnaceRegistry();
@@ -222,6 +222,12 @@ public class MainClass
     	//AlloyFurnaceRegistry.addRecipe(OreDictionary.getOreNames(), new ItemStack(Items.redstone, 4), Items.iron_ingot);
     }
     
+    public static void PostCrafting()
+    {
+    	ItemStack silver_ingot = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 54);
+		
+		GameRegistry.addRecipe(new ItemStack(ItemAthame), "A", "B", 'A', silver_ingot, 'B', Items.stick );
+    }
     
     public static Enchantment vorpal;
 	public static Enchantment disjunction;
