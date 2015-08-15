@@ -18,6 +18,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import codechicken.microblock.MicroblockClass;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -96,7 +97,7 @@ public class MainClass
     public static Item ItemAthame = new ItemAthame();
     
     public static Block BlockCarvedMarble = new BlockCarvedMarble();
-    
+    public static Block BlockLittleMarbleBricks = new BlockLittleMarbleBricks(Material.rock);
   
     public static Block BlockProjectTable = new de.xthelegend.projectredextended.project_table.BlockProjectTable().setGuiId(GUI_NUMBER_IDS.PROJECT_TABLE);
     public static Block BlockAlloyFurnace = new de.xthelegend.projectredextended.alloy_furnace.BlockAlloyFurnace();
@@ -116,6 +117,7 @@ public class MainClass
     public static boolean enableDebugger = true;
     public static final Item Namefinder = new de.xthelegend.projectredextended.debug.Namefinder();
     
+    public static Item ItemBrassIngot = new ItemBrassIngot();
    
     
     @EventHandler
@@ -149,6 +151,7 @@ public class MainClass
     	GameRegistry.registerItem(ItemIndigoDye,ItemIndigoDye.getUnlocalizedName());
     	GameRegistry.registerItem(ItemAthame, ItemAthame.getUnlocalizedName());
     	GameRegistry.registerBlock(BlockCarvedMarble, BlockCarvedMarble.getUnlocalizedName());
+    	GameRegistry.registerBlock(BlockLittleMarbleBricks, BlockLittleMarbleBricks.getUnlocalizedName());
     	GameRegistry.registerBlock(BlockProjectTable, BlockProjectTable.getUnlocalizedName());
     	GameRegistry.registerBlock(BlockAlloyFurnace, BlockAlloyFurnace.getUnlocalizedName());
     	GameRegistry.registerItem(ItemSeedBag, ItemSeedBag.getUnlocalizedName());
@@ -157,6 +160,7 @@ public class MainClass
     	if(enableDebugger)
     		GameRegistry.registerItem(Namefinder,Namefinder.getUnlocalizedName());
     	
+    	GameRegistry.registerItem(ItemBrassIngot, ItemBrassIngot.getUnlocalizedName());
     
     }
     
@@ -238,6 +242,9 @@ public class MainClass
 				ItemStack blue_doped_wafer = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 59);
 				ItemStack silicon_wafer = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 12);
 		
+		
+		ItemStack copperStackBrass = new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 3, (short) 52);
+		
 		GameRegistry.addRecipe(new ItemStack(ItemAthame), "A", "B", 'A', silver_ingot, 'B', Items.stick );
 		
 		IAlloyFurnaceRegistry AlloyFurnaceRegistry = projectRedExtendedAPI.getInstance().getAlloyFurnaceRegistry();
@@ -260,8 +267,16 @@ public class MainClass
 	      AlloyFurnaceRegistry.addRecyclingRecipe(new ItemStack(Items.iron_ingot));
 	      AlloyFurnaceRegistry.addRecyclingRecipe(new ItemStack(Items.gold_ingot));
 	      AlloyFurnaceRegistry.addRecyclingRecipe(new ItemStack(Items.gold_nugget));
+	      
+	      GameRegistry.addRecipe(new ItemStack(ItemSeedBag), new Object[]{"qwq","eqe","eee", 'q', Items.string, 'e', new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.core.part"), 1, (short) 35)});
+	      GameRegistry./*addRecpie*/addRecipe(new ItemStack(BlockAlloyFurnace), new Object[]{"qqq","qwq","qqq", 'q', Blocks.brick_block});
+	      GameRegistry.addRecipe(new ItemStack(BlockProjectTable), new Object[]{"qqq","wew","wrw", 'w', Blocks.stone, 'q', Blocks.planks, 'e', Blocks.crafting_table, 'r', Blocks.chest});
+   
+	      AlloyFurnaceRegistry.addRecipe(new ItemStack(ItemBrassIngot), copperStackBrass, new ItemStack(Items.iron_ingot));
+	      
+	      GameRegistry.addRecipe(new ItemStack(BlockLittleMarbleBricks,4,0), new Object[]{"qq", "qq", 'q', new ItemStack(GameRegistry.findItem("ProjRed|Core", "projectred.exploration.BlockDecoratives"), 1, (short) 1)});
     
-    
+	      MicroblockClass.createPart();
     }
     
     public static Enchantment vorpal;

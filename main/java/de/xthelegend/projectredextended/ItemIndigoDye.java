@@ -22,8 +22,8 @@ public class ItemIndigoDye extends Item {
 	
 		if (entity instanceof EntitySheep) {
 			EntitySheep sheep = (EntitySheep) entity;
-			if (!sheep.getSheared() && sheep.getFleeceColor() != 4) {
-				sheep.setFleeceColor(4);
+			if (!sheep.getSheared() && sheep.getFleeceColor() != 11) {
+				sheep.setFleeceColor(11);
 				--stack.stackSize;
 			}
 			return true;
