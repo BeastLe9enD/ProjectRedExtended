@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 
-public abstract class BaseBlock extends BlockDirectional {
+public abstract class BaseBlock extends Block {
 
 	public BaseBlock(Material material, String name) {
 		super(material);

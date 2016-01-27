@@ -7,5 +7,6 @@ public class ItemBrassIngot extends Item{
 	{
 		this.setTextureName(MainClass.MODID + ":" + "brass_ingot");
         this.setUnlocalizedName(MainClass.MODID + ":" + "brass_ingot");
+        setCreativeTab(MainClass.tabProjectExtended);
 	}
 }

@@ -3,6 +3,7 @@ package de.xthelegend.projectredextended.lib.base;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.qmunity.lib.misc.ForgeDirectionUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import de.xthelegend.projectredextended.MainClass;
@@ -173,13 +174,34 @@ public class BaseContainer extends BaseBlock implements ITileEntityProvider{
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack iStack) 
     {
     	TileEntity te= get(world, x, y, z);
-        /*BPApi.getInstance().loadSilkySettings(world, x, y, z, iStack);
-        TileEntity te = get(world, x, y, z);
-        if (te instanceof IRotatable) {
-            ((IRotatable) te).setFacingDirection(ForgeDirectionUtils.getDirectionFacing(player, canRotateVertical()).getOpposite());*/
+        
+
+        
+         ((BaseTile) te).setFacingDirection(ForgeDirectionUtils.getDirectionFacing(player, canRotateVertical()).getOpposite());
     }
     
+    private boolean canRotateVertical() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
     @Override
+    public boolean rotateBlock(World worldObj, int x, int y, int z, ForgeDirection axis) {
+
+        TileEntity te = get(worldObj, x, y, z);
+        
+        
+            ForgeDirection dir = ((BaseTile) te).getFacingDirection();
+            dir = dir.getRotation(axis);
+            if (dir != ForgeDirection.UP && dir != ForgeDirection.DOWN || canRotateVertical()) {
+            	((BaseTile) te).setFacingDirection(dir);
+                return true;
+            }
+        
+        return false;
+}
+    
+	@Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
 

@@ -52,7 +52,7 @@ public class BlockRubberLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public int getRenderColor(int p_149741_1_)
     {
-        return ColorizerFoliage.getFoliageColorBasic();
+        return 0x05160B;
     }
 
     @SideOnly(Side.CLIENT)

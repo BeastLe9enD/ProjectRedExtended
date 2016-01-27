@@ -30,7 +30,6 @@ public class GUIHandler implements IGuiHandler {
         switch (GUI_NUMBER_IDS.values()[ID]) {
         case ALLOY_FURNACE:
             return new ContainerAlloyFurnace(player.inventory, (TileAlloyFurnace) ent);
-        
         case PROJECT_TABLE:
             return new ContainerProjectTable(player.inventory, (TileProjectTable) ent);
         case SEED_BAG:
@@ -39,6 +38,7 @@ public class GUIHandler implements IGuiHandler {
                         player.getCurrentEquippedItem(), "Seed Bag", 9));
             }
             break;
+        
         default:
             break;
         }
@@ -54,7 +54,6 @@ public class GUIHandler implements IGuiHandler {
         switch (GUI_NUMBER_IDS.values()[ID]) {
         case ALLOY_FURNACE:
             return new GUIAlloyFurnace(player.inventory, (TileAlloyFurnace) ent);
-        
         case PROJECT_TABLE:
             return new GUIProjectTable(player.inventory, (TileProjectTable) ent);
         

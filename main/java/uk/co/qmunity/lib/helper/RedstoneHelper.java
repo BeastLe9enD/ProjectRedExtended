@@ -265,4 +265,6 @@ public class RedstoneHelper {
                     world.notifyBlockOfNeighborChange(x_ + d.offsetX, y_ + d.offsetY, z_ + d.offsetZ, block);
     }
 
+	
+
 }

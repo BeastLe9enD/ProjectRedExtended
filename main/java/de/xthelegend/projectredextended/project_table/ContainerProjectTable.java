@@ -66,6 +66,7 @@ public class ContainerProjectTable extends Container {
             for (int j = 0; j < 9; j++) {
                 addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 126 + i * 18));
             }
+            
         }
 
         for (int j = 0; j < 9; j++) {

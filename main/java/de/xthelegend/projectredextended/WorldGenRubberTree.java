@@ -61,7 +61,8 @@ public class WorldGenRubberTree extends WorldGenerator
         
     }
 
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public boolean generate(World var1, Random x, int y, int z, int var5)
     {
         int var9 = x.nextInt(6) + 25;

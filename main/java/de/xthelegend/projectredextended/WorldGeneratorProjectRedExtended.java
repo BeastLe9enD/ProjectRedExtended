@@ -1,11 +1,15 @@
 package de.xthelegend.projectredextended;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
+import mrtjp.core.world.WorldLib;
 
 public class WorldGeneratorProjectRedExtended implements IWorldGenerator{
 
@@ -40,12 +44,19 @@ public class WorldGeneratorProjectRedExtended implements IWorldGenerator{
 		
 		if (bgb == BiomeGenBase.jungle || bgb == BiomeGenBase.jungleHills)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 20; i++)
             {
                 int x = chunkX * 16 + random.nextInt(16) + 8;
                 int y = random.nextInt(128);
                 int z = chunkZ * 16 + random.nextInt(16) + 8;
-               // (new de.xthelegend.projectredextended.rubbergen.schematic01()).generate(world, random, x, y, z);
+                Block uwb = world.getBlock(x, y - (2/2), z);
+                if(uwb == Blocks.dirt || uwb == Blocks.grass)
+                {
+                	(new de.xthelegend.projectredextended.rubbergen.schematic01()).generate(world, random, x, y, z);
+                }
+                
+                else return;
+                
             }
         }
 		/*
