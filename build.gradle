@@ -1,0 +1,79 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+
+repositories {
+    maven {
+        name "ChickenBone's Maven"
+        url "http://chickenbones.net/maven"
+    }
+    maven {
+        name "progwlm6's Maven"
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
+
+version = "1.10.2-0.0.1"
+group= "de.beastlegend.prextended" 
+archivesBaseName = "ProjectRedExtended"
+
+sourceCompatibility = targetCompatibility = "1.8"
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
+minecraft {
+    version = "1.10.2-12.18.3.2316"
+    runDir = "run"
+    mappings = "snapshot_20161111"
+}
+
+dependencies {
+    deobfCompile "codechicken:CodeChickenLib:1.10.2-2.5.9.283:deobf"
+    deobfCompile "mezz.jei:jei_1.10.2:3.14.7.420"
+    deobfCompile "mrtjp:MrTJPCore:1.10.2-2.0.1.20:deobf"
+    deobfCompile "mrtjp:ProjectRed:1.10.2-4.8.4.51:deobf"
+}
+
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+jar {
+    classifier = 'universal'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+task srcJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives deobfJar
+    archives srcJar
+}
