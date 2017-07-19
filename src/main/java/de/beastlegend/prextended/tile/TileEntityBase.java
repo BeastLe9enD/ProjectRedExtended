@@ -29,6 +29,13 @@ public class TileEntityBase extends TileEntity implements ITickable{
         isRedstonePowered = compound.getBoolean("redstone_powered");
     }
 
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setBoolean("isRedstonePowered", isRedstonePowered);
+        writeToPacketNBT(compound);
+        return super.writeToNBT(compound);
+    }
+
 
     protected void writeToPacketNBT(NBTTagCompound compound) {
         compound.setByte("rotation", (byte)rotation.ordinal());
