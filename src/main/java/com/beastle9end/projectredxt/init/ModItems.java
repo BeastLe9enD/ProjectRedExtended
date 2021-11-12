@@ -37,8 +37,8 @@ public class ModItems {
     public static RegistryObject<BlockNamedItem> SAPPHIRE_SEEDS = REGISTRY.register("sapphire_seeds", () -> new BlockNamedItem(ModBlocks.SAPPHIRE_CROP.get(), new Item.Properties().tab(ProjectRedExtended.ITEM_GROUP)));
     public static RegistryObject<BasicItem> SAPPHIRE_SHARDS = REGISTRY.register("sapphire_shards", () -> new BasicItem(new Item.Properties()));
 
-    public static RegistryObject<BlockNamedItem> GREEN_SAPPHIRE_SEEDS = REGISTRY.register("peridot_seeds", () -> new BlockNamedItem(ModBlocks.PERIDOT_CROP.get(), new Item.Properties().tab(ProjectRedExtended.ITEM_GROUP)));
-    public static RegistryObject<BasicItem> GREEN_SAPPHIRE_SHARDS = REGISTRY.register("peridot_shards", () -> new BasicItem(new Item.Properties()));
+    public static RegistryObject<BlockNamedItem> PERIDOT_SEEDS = REGISTRY.register("peridot_seeds", () -> new BlockNamedItem(ModBlocks.PERIDOT_CROP.get(), new Item.Properties().tab(ProjectRedExtended.ITEM_GROUP)));
+    public static RegistryObject<BasicItem> PERIDOT_SHARDS = REGISTRY.register("peridot_shards", () -> new BasicItem(new Item.Properties()));
 
     public static ArrayList<RegistryObject<SeedBagItem>> SEED_BAGS = registerDyedItems(dyeColor -> () -> new SeedBagItem(dyeColor),
             dyeColor -> String.format("seed_bag_%s", dyeColor.getName()));

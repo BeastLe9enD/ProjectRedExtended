@@ -1,9 +1,9 @@
 {
-  "type": "projectredxt:flax_seed_drops",
+  "type": "projectredxt:ruby_seed_drops",
   "conditions": [
     {
       "condition": "minecraft:random_chance",
-      "chance": 0.15
+      "chance": 0.0234
     },
     {
       "condition": "minecraft:inverted",

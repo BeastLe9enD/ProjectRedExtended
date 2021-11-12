@@ -2,6 +2,9 @@
   "replace": false,
   "entries": [
     "projectredxt:flax_from_grass",
-    "projectredxt:indigo_from_grass"
+    "projectredxt:indigo_from_grass",
+    "projectredxt:ruby_from_grass",
+    "projectredxt:sapphire_from_grass",
+    "projectredxt:peridot_from_grass"
   ]
 } 

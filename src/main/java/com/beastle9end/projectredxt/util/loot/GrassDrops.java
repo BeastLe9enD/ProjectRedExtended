@@ -32,6 +32,10 @@ public class GrassDrops {
 
         register(registry, "flax_seed_drops", ModItems.FLAX_SEEDS);
         register(registry, "indigo_seed_drops", ModItems.INDIGO_SEEDS);
+
+        register(registry, "ruby_seed_drops", ModItems.RUBY_SEEDS);
+        register(registry, "sapphire_seed_drops", ModItems.SAPPHIRE_SEEDS);
+        register(registry, "peridot_seed_drops", ModItems.PERIDOT_SEEDS);
     }
 
     private static class CropDropSerializer extends GlobalLootModifierSerializer<CropDropModifier> {
