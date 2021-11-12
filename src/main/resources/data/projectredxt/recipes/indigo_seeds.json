@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "projectredxt",
+  "ingredients": [
+    {
+      "item": "projectredxt:indigo_flower"
+    }
+  ],
+  "result": {
+    "item": "projectredxt:indigo_seeds"
+  }
+}

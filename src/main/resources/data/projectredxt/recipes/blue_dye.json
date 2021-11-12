@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "projectredxt",
+  "ingredients": [
+    {
+      "item": "projectredxt:indigo_dye"
+    }
+  ],
+  "result": {
+    "item": "minecraft:blue_dye"
+  }
+}

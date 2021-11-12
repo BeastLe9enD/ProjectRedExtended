@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "projectredxt",
+  "pattern": [
+    " - ",
+    "#d#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "projectred-core:woven_cloth"
+    },
+    "-": {
+      "item": "minecraft:string"
+    },
+    "d": {
+      "item": "minecraft:light_gray_dye"
+    }
+  },
+  "result": {
+    "item": "projectredxt:seed_bag_light_gray"
+  }
+}

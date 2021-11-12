@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "projectredxt",
+  "ingredients": [
+    {
+      "item": "projectred-core:ruby"
+    }
+  ],
+  "result": {
+    "item": "projectredxt:ruby_shards",
+    "count": 9
+  }
+}

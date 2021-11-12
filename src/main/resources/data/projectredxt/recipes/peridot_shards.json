@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "projectredxt",
+  "ingredients": [
+    {
+      "item": "projectred-core:peridot"
+    }
+  ],
+  "result": {
+    "item": "projectredxt:peridot_shards",
+    "count": 9
+  }
+}

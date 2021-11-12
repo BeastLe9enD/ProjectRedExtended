@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "projectredxt",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "projectredxt:sapphire_shards"
+    }
+  },
+  "result": {
+    "item": "projectred-core:sapphire"
+  }
+}

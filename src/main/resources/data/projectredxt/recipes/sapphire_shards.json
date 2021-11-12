@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "projectredxt",
+  "ingredients": [
+    {
+      "item": "projectred-core:sapphire"
+    }
+  ],
+  "result": {
+    "item": "projectredxt:sapphire_shards",
+    "count": 9
+  }
+}

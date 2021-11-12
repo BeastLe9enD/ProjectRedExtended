@@ -1,0 +1,12 @@
+package com.beastle9end.projectredxt.util;
+
+import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+
+public class ItemStackUtils {
+    public static @NotNull ItemStack stackWithSize(@NotNull ItemStack oldStack, int count) {
+        final ItemStack newStack = oldStack.copy();
+        newStack.setCount(count);
+        return newStack;
+    }
+}
