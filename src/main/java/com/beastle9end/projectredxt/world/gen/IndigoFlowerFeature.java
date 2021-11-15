@@ -18,13 +18,15 @@ public class IndigoFlowerFeature extends Feature<IndigoFlowerConfig> {
     }
 
     @Override
-    public boolean place(@NotNull final ISeedReader reader, @NotNull final ChunkGenerator generator, @NotNull final Random random,
-                         @NotNull final BlockPos pos, @NotNull final IndigoFlowerConfig config) {
+    public boolean place(@NotNull final ISeedReader reader, @NotNull final ChunkGenerator generator,
+                         @NotNull final Random random, @NotNull final BlockPos pos, @NotNull final IndigoFlowerConfig config) {
         final BaseFlowerBlock flower = ModBlocks.INDIGO_FLOWER.get();
 
         if (random.nextInt(config.getChance()) > 0) {
             return false;
         }
+
+        int numPlaced = 0;
 
         for (int i = 0; i < config.getCount(); i++) {
             final int x = pos.getX() + random.nextInt(16);
@@ -38,8 +40,9 @@ public class IndigoFlowerFeature extends Feature<IndigoFlowerConfig> {
                     && (!reader.dimensionType().hasCeiling() || targetPos.getY() < 127)
                     && flower.canSurvive(targetState, reader, targetPos)) {
                 reader.setBlock(targetPos, flower.defaultBlockState(), 2);
+                numPlaced++;
             }
         }
-        return false;
+        return numPlaced > 0;
     }
 }

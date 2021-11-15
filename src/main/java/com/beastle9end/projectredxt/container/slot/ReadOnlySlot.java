@@ -6,7 +6,7 @@ import net.minecraft.inventory.container.Slot;
 import org.jetbrains.annotations.NotNull;
 
 public class ReadOnlySlot extends Slot {
-    public ReadOnlySlot(@NotNull final IInventory inventory, int slot, int x, int y) {
+    public ReadOnlySlot(@NotNull final IInventory inventory, final int slot, final int x, final int y) {
         super(inventory, slot, x, y);
     }
 

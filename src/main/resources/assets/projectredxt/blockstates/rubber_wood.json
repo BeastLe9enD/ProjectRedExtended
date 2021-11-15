@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "projectredxt:block/rubber_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "projectredxt:block/rubber_wood"
+    },
+    "axis=z": {
+      "model": "projectredxt:block/rubber_wood",
+      "x": 90
+    }
+  }
+}

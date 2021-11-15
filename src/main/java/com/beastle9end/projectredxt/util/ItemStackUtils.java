@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemStackUtils {
-    public static @NotNull ItemStack stackWithSize(@NotNull ItemStack oldStack, int count) {
+    public static @NotNull ItemStack stackWithSize(@NotNull final ItemStack oldStack, final int count) {
         final ItemStack newStack = oldStack.copy();
         newStack.setCount(count);
         return newStack;

@@ -8,7 +8,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
 public class SeedBagSlot extends SlotItemHandler {
-    public SeedBagSlot(@NotNull final ItemStackHandler handler, int slot, int x, int y) {
+    public SeedBagSlot(@NotNull final ItemStackHandler handler, final int slot, final int x, final int y) {
         super(handler, slot, x, y);
     }
 

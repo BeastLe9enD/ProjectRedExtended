@@ -11,7 +11,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class BasicBagItem extends BasicItem implements INamedContainerProvider {
-    public BasicBagItem(@NotNull Properties properties) {
+    public BasicBagItem(@NotNull final Properties properties) {
         super(properties);
     }
 

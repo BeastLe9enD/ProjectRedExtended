@@ -1,5 +1,6 @@
 package com.beastle9end.projectredxt;
 
+import com.beastle9end.projectredxt.client.ClientRegistry;
 import com.beastle9end.projectredxt.init.ModBlocks;
 import com.beastle9end.projectredxt.init.ModContainers;
 import com.beastle9end.projectredxt.init.ModFeatures;
@@ -41,8 +42,7 @@ public class ProjectRedExtended {
     private void onSetupClient(final FMLClientSetupEvent event) {
         LOGGER.info("Setup client");
 
-        ModBlocks.registerRenderTypes();
-        ModItems.registerItemColors();
+        ClientRegistry.register();
 
         ModContainers.registerScreens();
     }

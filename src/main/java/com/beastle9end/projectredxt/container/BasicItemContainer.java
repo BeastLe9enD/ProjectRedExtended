@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -12,12 +13,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class BasicItemContainer extends Container {
     protected final ItemStackHandler handler;
-    private final Class<?> itemClass;
+    private final Class<? extends Item> itemClass;
 
     public BasicItemContainer(@Nullable final ContainerType<?> type,
                               final int windowId,
                               @NotNull final PlayerInventory inventory,
-                              @NotNull final Class<?> itemClass,
+                              @NotNull final Class<? extends Item> itemClass,
                               final int numSlots) {
         super(type, windowId);
 

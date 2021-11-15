@@ -44,7 +44,7 @@ public class TallCropsBlock extends BushBlock implements IGrowable, IBlockRender
     private final boolean needsFertileSoil;
 
     public TallCropsBlock(@NotNull final Properties properties, @NotNull final RegistryObject<BlockNamedItem> seedProvider,
-                          boolean needsFertileSoil) {
+                          final boolean needsFertileSoil) {
         super(properties);
 
         this.seedProvider = seedProvider;

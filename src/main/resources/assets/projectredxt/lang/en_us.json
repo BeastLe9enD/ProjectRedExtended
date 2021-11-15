@@ -1,19 +1,19 @@
 {
   "itemGroup.projectredxt": "Project Red: Extended",
   "block.projectredxt.indigo_flower": "Indigo Flower",
+  "block.projectredxt.rubber_sapling": "Rubber Sapling",
+  "block.projectredxt.rubber_log": "Rubber Log",
+  "block.projectredxt.rubber_wood": "Rubber Wood",
+  "block.projectredxt.rubber_leaves": "Rubber Leaves",
   "item.projectredxt.flax_seeds": "Flax Seeds",
   "item.projectredxt.indigo_seeds": "Indigo Seeds",
   "item.projectredxt.indigo_dye": "Indigo Dye",
-
   "item.projectredxt.ruby_seeds": "Ruby Seeds",
   "item.projectredxt.ruby_shards": "Ruby Shards",
-
   "item.projectredxt.sapphire_seeds": "Sapphire Seeds",
   "item.projectredxt.sapphire_shards": "Sapphire Shards",
-
   "item.projectredxt.peridot_seeds": "Peridot Seeds",
   "item.projectredxt.peridot_shards": "Peridot Shards",
-
   "item.projectredxt.seed_bag_black": "Black Seed Bag",
   "item.projectredxt.seed_bag_blue": "Blue Seed Bag",
   "item.projectredxt.seed_bag_brown": "Brown Seed Bag",
@@ -30,7 +30,6 @@
   "item.projectredxt.seed_bag_red": "Red Seed Bag",
   "item.projectredxt.seed_bag_white": "White Seed Bag",
   "item.projectredxt.seed_bag_yellow": "Yellow Seed Bag",
-
   "item.projectredxt.improved_bag_black": "Black Improved Bag",
   "item.projectredxt.improved_bag_blue": "Blue Improved Bag",
   "item.projectredxt.improved_bag_brown": "Brown Improved Bag",
@@ -47,7 +46,6 @@
   "item.projectredxt.improved_bag_red": "Red Improved Bag",
   "item.projectredxt.improved_bag_white": "White Improved Bag",
   "item.projectredxt.improved_bag_yellow": "Yellow Improved Bag",
-
   "container.projectredxt.seed_bag_black": "Black Seed Bag",
   "container.projectredxt.seed_bag_blue": "Blue Seed Bag",
   "container.projectredxt.seed_bag_brown": "Brown Seed Bag",
@@ -64,7 +62,6 @@
   "container.projectredxt.seed_bag_red": "Red Seed Bag",
   "container.projectredxt.seed_bag_white": "White Seed Bag",
   "container.projectredxt.seed_bag_yellow": "Yellow Seed Bag",
-
   "container.projectredxt.improved_bag_black": "Black Improved Bag",
   "container.projectredxt.improved_bag_blue": "Blue Improved Bag",
   "container.projectredxt.improved_bag_brown": "Brown Improved Bag",

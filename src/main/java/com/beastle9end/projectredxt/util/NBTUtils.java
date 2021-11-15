@@ -6,7 +6,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 public class NBTUtils {
-    public static void saveStackHandler(@NotNull ItemStack stack, @NotNull final ItemStackHandler handler) {
+    public static void saveStackHandler(@NotNull final ItemStack stack, @NotNull final ItemStackHandler handler) {
         if (!stack.hasTag()) {
             stack.setTag(new CompoundNBT());
         }
@@ -15,7 +15,7 @@ public class NBTUtils {
         }
     }
 
-    public static ItemStackHandler loadStackHandler(@NotNull ItemStack stack, int numSlots) {
+    public static ItemStackHandler loadStackHandler(@NotNull final ItemStack stack, final int numSlots) {
         final ItemStackHandler handler = new ItemStackHandler(numSlots);
         if (stack.hasTag()) {
             handler.deserializeNBT(stack.getTag().getCompound("inventory"));

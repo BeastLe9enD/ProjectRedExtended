@@ -117,7 +117,7 @@ public class SeedBagItem extends BasicBagItem implements IItemColor {
             return ActionResultType.PASS;
         }
 
-        if(world.isClientSide) {
+        if (world.isClientSide) {
             player.swing(context.getHand());
         }
         return ActionResultType.SUCCESS;

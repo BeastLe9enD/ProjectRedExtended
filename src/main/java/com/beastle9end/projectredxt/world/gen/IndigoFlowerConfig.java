@@ -13,7 +13,7 @@ public class IndigoFlowerConfig implements IFeatureConfig {
     private final int count;
     private final int chance;
 
-    public IndigoFlowerConfig(int count, int chance) {
+    public IndigoFlowerConfig(final int count, final int chance) {
         this.count = count;
         this.chance = chance;
     }

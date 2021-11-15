@@ -5,22 +5,16 @@ import com.beastle9end.projectredxt.item.BasicItem;
 import com.beastle9end.projectredxt.item.ImprovedBagItem;
 import com.beastle9end.projectredxt.item.SeedBagItem;
 import com.beastle9end.projectredxt.util.Constants;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -46,30 +40,14 @@ public class ModItems {
             dyeColor -> String.format("improved_bag_%s", dyeColor.getName()));
 
     private static <T extends Item> @NotNull ArrayList<RegistryObject<T>> registerDyedItems(@NotNull final Function<DyeColor, Supplier<T>> itemFactory,
-                                                                                                         @NotNull final Function<DyeColor, String> nameFactory) {
+                                                                                            @NotNull final Function<DyeColor, String> nameFactory) {
         final DyeColor[] colors = DyeColor.values();
         final ArrayList<RegistryObject<T>> result = new ArrayList<>(colors.length);
 
-        for(final DyeColor color : colors) {
+        for (final DyeColor color : colors) {
             result.add(REGISTRY.register(nameFactory.apply(color), itemFactory.apply(color)));
         }
 
         return result;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static void registerItemColors() {
-        final Collection<RegistryObject<Item>> entries = REGISTRY.getEntries();
-        final ItemColors colors = Minecraft.getInstance().getItemColors();
-
-        for(final RegistryObject<Item> entry : entries) {
-            final Item item = entry.get();
-            if(!(item instanceof IItemColor)) {
-                continue;
-            }
-
-            final IItemColor colorProvider = (IItemColor) item;
-            colors.register(colorProvider, item);
-        }
     }
 }
