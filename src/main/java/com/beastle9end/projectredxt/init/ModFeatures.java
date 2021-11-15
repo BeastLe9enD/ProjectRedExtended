@@ -30,7 +30,7 @@ public class ModFeatures {
     public static final Feature<RubberTreeConfig> RUBBER_TREE = new RubberTreeFeature();
 
     public static final ConfiguredFeature<IndigoFlowerConfig, ?> INDIGO_FLOWER_CONFIGURED = INDIGO_FLOWER.configured(new IndigoFlowerConfig(4, 20));
-    public static final ConfiguredFeature<RubberTreeConfig, ?> RUBBER_TREE_CONFIGURED = RUBBER_TREE.configured(new RubberTreeConfig(13, 16, 8, 6, 9, 14, 17));
+    public static final ConfiguredFeature<RubberTreeConfig, ?> RUBBER_TREE_CONFIGURED = RUBBER_TREE.configured(new RubberTreeConfig(13, 16, 8, 6, 9, 14, 17, 1.45D, 0.0215D, 0.48D, 16, 15));
 
     private static <T> void addFeature(@NotNull final IForgeRegistry<Feature<?>> registry,
                                        @NotNull final Registry<? super T> mcRegistry,
@@ -54,6 +54,9 @@ public class ModFeatures {
         final Biome.Category category = event.getCategory();
         if (!BIOME_BLACKLIST.contains(category)) {
             event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, INDIGO_FLOWER_CONFIGURED);
+        }
+        if (category == Biome.Category.JUNGLE) {
+            event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, RUBBER_TREE_CONFIGURED);
         }
     }
 }

@@ -12,6 +12,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -26,9 +27,22 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
         super(RubberTreeConfig.CODEC);
     }
 
-    private boolean canPlaceTree(@NotNull final ISeedReader reader, @NotNull final BlockPos pos, int treeHeight) {
-        for (int i = -2; i < 3; i++) {
-            for (int j = -2; j < 3; j++) {
+    private static boolean isGrassUnderTree(@NotNull final ISeedReader reader, @NotNull final BlockPos pos) {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                final BlockPos currentPos = pos.offset(i, -1, j);
+                if (!reader.getBlockState(currentPos).is(Blocks.GRASS_BLOCK) && !reader.getBlockState(currentPos).is(Blocks.DIRT)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean canPlaceTree(@NotNull final ISeedReader reader, @NotNull final BlockPos pos, int treeHeight) {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
                 for (int k = 1; k < treeHeight; k++) {
                     final BlockPos currentPos = pos.offset(i, k, j);
                     if (!reader.getBlockState(currentPos).isAir(reader, currentPos)) {
@@ -46,7 +60,9 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
         for (int i = min.getX(); i < max.getX(); i++) {
             for (int j = min.getY(); j < max.getY(); j++) {
                 for (int k = min.getZ(); k < max.getZ(); k++) {
-                    if (random.nextInt(100) < 69) {
+                    final BlockPos currentPos = new BlockPos(i, j, k);
+
+                    if (random.nextInt(100) < 69 && reader.getBlockState(currentPos).isAir(reader, currentPos)) {
                         reader.setBlock(new BlockPos(i, j, k), vinesState, 2);
                     }
                 }
@@ -75,7 +91,7 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
     }
 
     private static void generateLeaves(@NotNull final ISeedReader reader, @NotNull final Random random, @NotNull final BlockPos pos, @NotNull final Block logBlock,
-                                       @NotNull final BlockState leafState) {
+                                       @NotNull final BlockState leafState, @NotNull RubberTreeConfig config) {
         for (int j = -1; j <= 1; j++) {
             for (int k = -1; k <= 1; k++) {
                 for (int l = -1; l <= 1; l++) {
@@ -92,7 +108,7 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
 
                     reader.setBlock(leafPos, leafState, 2);
 
-                    if (random.nextInt(16) == 0) {
+                    if (random.nextInt(config.getVineChance()) == 0) {
                         for (final Direction direction : VINE_DIRECTIONS) {
                             final Vector3i normal = direction.getNormal();
 
@@ -117,9 +133,18 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
 
     @Override
     public boolean place(@NotNull final ISeedReader reader, @Nullable final ChunkGenerator generator,
-                         @NotNull final Random random, @NotNull final BlockPos pos, @NotNull final RubberTreeConfig config) {
+                         @NotNull final Random random, @NotNull BlockPos pos, @NotNull final RubberTreeConfig config) {
         final int treeHeight = random.nextInt(config.getMaxHeight() - config.getMinHeight()) + config.getMinHeight();
-        if (!canPlaceTree(reader, pos, treeHeight)) {
+
+        final boolean isWorldGen = generator != null;
+
+        if (isWorldGen) {
+            pos = pos.offset(0, reader.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ()), 0);
+
+            if (random.nextInt(config.getSpawnRate()) > 0 || !isGrassUnderTree(reader, pos)) {
+                return false;
+            }
+        } else if (!canPlaceTree(reader, pos, treeHeight)) {
             return false;
         }
 
@@ -140,7 +165,7 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
                         final BlockPos currentPos = snakeSource.offset(i, k, j);
 
                         reader.setBlock(currentPos, logState, 2);
-                        generateLeaves(reader, random, currentPos, logBlock, leafState);
+                        generateLeaves(reader, random, currentPos, logBlock, leafState, config);
                     }
                 }
             }
@@ -150,14 +175,14 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
         final double snakeOffset = random.nextDouble() * Math.PI * 2.0D;
 
         for (int i = 0; i < numSnakes; i++) {
-            final double angle = 2.0 * Math.PI / numSnakes * i + random.nextDouble() * 0.48D - 0.24D;
+            final double angle = 2.0D * Math.PI / numSnakes * i + random.nextDouble() * config.getSnakeOffset() - config.getSnakeOffset() / 2.0D + snakeOffset;
 
             final int length = random.nextInt(config.getMaxSnakeLength() - config.getMinSnakeLength()) + config.getMinSnakeLength();
 
             Vector3d v = MathUtils.blockPosToVec3d(snakeSource);
             Vector3d a = Vector3d.ZERO;
 
-            double heightIncrease = 1.45D;
+            double heightIncrease = config.getHeightIncrease();
 
             Vector3d direction;
             while (a.lengthSqr() < length * length) {
@@ -175,12 +200,12 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
                     final BlockPos randomPos = currentPos.offset((offset & 1), (offset & 2) >> 1, (offset & 4) >> 2);
 
                     reader.setBlock(randomPos, logState, 2);
-                    generateLeaves(reader, random, randomPos, logBlock, leafState);
+                    generateLeaves(reader, random, randomPos, logBlock, leafState, config);
                 }
 
-                generateLeaves(reader, random, currentPos, logBlock, leafState);
+                generateLeaves(reader, random, currentPos, logBlock, leafState, config);
 
-                heightIncrease -= 0.0215D;
+                heightIncrease -= config.getHeightDecrease();
             }
         }
 
