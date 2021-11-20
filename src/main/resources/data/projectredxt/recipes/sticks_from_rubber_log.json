@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "projectredxt",
+  "ingredients": [
+    {
+      "item": "projectredxt:rubber_log"
+    }
+  ],
+  "result": {
+    "item": "minecraft:stick",
+    "count": 8
+  }
+}
