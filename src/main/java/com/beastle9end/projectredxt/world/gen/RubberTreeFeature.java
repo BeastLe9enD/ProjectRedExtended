@@ -91,7 +91,7 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
     }
 
     private static void generateLeaves(@NotNull final ISeedReader reader, @NotNull final Random random, @NotNull final BlockPos pos, @NotNull final Block logBlock,
-                                       @NotNull final BlockState leafState, @NotNull RubberTreeConfig config) {
+                                       @NotNull final Block woodBlock, @NotNull final BlockState leafState, @NotNull RubberTreeConfig config) {
         for (int j = -1; j <= 1; j++) {
             for (int k = -1; k <= 1; k++) {
                 for (int l = -1; l <= 1; l++) {
@@ -102,7 +102,7 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
                     final BlockPos leafPos = pos.offset(j, k, l);
                     final BlockState state = reader.getBlockState(leafPos);
 
-                    if (state.is(logBlock)) {
+                    if (state.is(logBlock) || state.is(woodBlock)) {
                         continue;
                     }
 
@@ -149,7 +149,11 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
         }
 
         final Block logBlock = ModBlocks.RUBBER_LOG.get();
+        final Block woodBlock = ModBlocks.RUBBER_WOOD.get();
+
         final BlockState logState = logBlock.defaultBlockState();
+        final BlockState woodState = woodBlock.defaultBlockState();
+
         final BlockState leafState = ModBlocks.RUBBER_LEAVES.get().defaultBlockState();
 
         generateTrunk(reader, random, pos, treeHeight, logState);
@@ -164,8 +168,8 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
                     if (random.nextInt(4) == 0) {
                         final BlockPos currentPos = snakeSource.offset(i, k, j);
 
-                        reader.setBlock(currentPos, logState, 2);
-                        generateLeaves(reader, random, currentPos, logBlock, leafState, config);
+                        reader.setBlock(currentPos, random.nextInt(2) == 0 ? woodState : logState, 2);
+                        generateLeaves(reader, random, currentPos, logBlock, woodBlock, leafState, config);
                     }
                 }
             }
@@ -200,10 +204,10 @@ public class RubberTreeFeature extends Feature<RubberTreeConfig> {
                     final BlockPos randomPos = currentPos.offset((offset & 1), (offset & 2) >> 1, (offset & 4) >> 2);
 
                     reader.setBlock(randomPos, logState, 2);
-                    generateLeaves(reader, random, randomPos, logBlock, leafState, config);
+                    generateLeaves(reader, random, randomPos, logBlock, woodBlock, leafState, config);
                 }
 
-                generateLeaves(reader, random, currentPos, logBlock, leafState, config);
+                generateLeaves(reader, random, currentPos, logBlock, woodBlock, leafState, config);
 
                 heightIncrease -= config.getHeightDecrease();
             }
