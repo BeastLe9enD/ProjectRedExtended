@@ -3,18 +3,18 @@ package com.beastle9end.projectredxt.util.loot;
 import com.beastle9end.projectredxt.init.ModItems;
 import com.beastle9end.projectredxt.util.Constants;
 import com.google.gson.JsonObject;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -46,7 +46,7 @@ public class GrassDrops {
         }
 
         @Override
-        public CropDropModifier read(@NotNull final ResourceLocation location, @NotNull final JsonObject object, @NotNull final ILootCondition[] conditions) {
+        public CropDropModifier read(@NotNull final ResourceLocation location, @NotNull final JsonObject object, @NotNull final LootItemCondition[] conditions) {
             return new CropDropModifier(item, conditions);
         }
 
@@ -59,7 +59,7 @@ public class GrassDrops {
     private static class CropDropModifier extends LootModifier {
         private final RegistryObject<? extends Item> item;
 
-        protected CropDropModifier(@NotNull final RegistryObject<? extends Item> item, @NotNull final ILootCondition[] conditions) {
+        protected CropDropModifier(@NotNull final RegistryObject<? extends Item> item, @NotNull final LootItemCondition[] conditions) {
             super(conditions);
 
             this.item = item;

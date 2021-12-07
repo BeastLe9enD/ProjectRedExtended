@@ -1,6 +1,6 @@
 package com.beastle9end.projectredxt.util;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class ItemStackUtils {

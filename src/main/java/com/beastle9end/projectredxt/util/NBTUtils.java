@@ -1,14 +1,14 @@
 package com.beastle9end.projectredxt.util;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 public class NBTUtils {
     public static void saveStackHandler(@NotNull final ItemStack stack, @NotNull final ItemStackHandler handler) {
         if (!stack.hasTag()) {
-            stack.setTag(new CompoundNBT());
+            stack.setTag(new CompoundTag());
         }
         if (stack.getTag() != null) {
             stack.getTag().put("inventory", handler.serializeNBT());

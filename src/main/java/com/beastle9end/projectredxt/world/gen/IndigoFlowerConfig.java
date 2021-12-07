@@ -2,9 +2,9 @@ package com.beastle9end.projectredxt.world.gen;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-public class IndigoFlowerConfig implements IFeatureConfig {
+public class IndigoFlowerConfig implements FeatureConfiguration {
     public static final Codec<IndigoFlowerConfig> CODEC = RecordCodecBuilder.create(it -> it.group(
             Codec.INT.fieldOf("count").forGetter(IndigoFlowerConfig::getCount),
             Codec.INT.fieldOf("chance").forGetter(IndigoFlowerConfig::getChance)

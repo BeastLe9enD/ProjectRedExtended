@@ -1,19 +1,19 @@
-package com.beastle9end.projectredxt.container;
+package com.beastle9end.projectredxt.menu;
 
-import com.beastle9end.projectredxt.container.slot.ReadOnlySlot;
-import com.beastle9end.projectredxt.init.ModContainers;
+import com.beastle9end.projectredxt.init.ModMenus;
 import com.beastle9end.projectredxt.item.ImprovedBagItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import com.beastle9end.projectredxt.menu.slot.ReadOnlySlot;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class ImprovedBagContainer extends BasicItemContainer {
+public class ImprovedBagMenu extends BasicItemMenu {
 
-    public ImprovedBagContainer(final int windowId, @NotNull final PlayerInventory inventory) {
-        super(ModContainers.IMPROVED_BAG, windowId, inventory, ImprovedBagItem.class, 54);
+    public ImprovedBagMenu(final int windowId, @NotNull final Inventory inventory) {
+        super(ModMenus.IMPROVED_BAG, windowId, inventory, ImprovedBagItem.class, 54);
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 9; j++) {
@@ -37,7 +37,7 @@ public class ImprovedBagContainer extends BasicItemContainer {
     }
 
     @Override
-    public @NotNull ItemStack quickMoveStack(@NotNull final PlayerEntity player, final int index) {
+    public @NotNull ItemStack quickMoveStack(@NotNull final Player player, final int index) {
         ItemStack stack = ItemStack.EMPTY;
         final Slot slot = slots.get(index);
 

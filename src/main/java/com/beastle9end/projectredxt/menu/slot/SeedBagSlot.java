@@ -1,7 +1,7 @@
-package com.beastle9end.projectredxt.container.slot;
+package com.beastle9end.projectredxt.menu.slot;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;

@@ -1,28 +1,28 @@
 package com.beastle9end.projectredxt.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.biome.BiomeColors;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class RubberLeavesBlock extends LeavesBlock implements IBlockColor, IItemColor {
+public class RubberLeavesBlock extends LeavesBlock implements BlockColor, ItemColor {
 
     public RubberLeavesBlock() {
-        super(AbstractBlock.Properties.of(Material.LEAVES)
+        super(BlockBehaviour.Properties.of(Material.LEAVES)
                 .strength(0.2F)
                 .sound(SoundType.GRASS)
                 .noOcclusion()
@@ -32,19 +32,18 @@ public class RubberLeavesBlock extends LeavesBlock implements IBlockColor, IItem
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState p_149653_1_) {
+    public boolean isRandomlyTicking(@NotNull final BlockState state) {
         return false;
     }
 
     @Override
-    public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
-
+    public void tick(@NotNull final BlockState state, @NotNull final ServerLevel level, @NotNull final BlockPos pos, @NotNull final Random random) {
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public int getColor(@NotNull final BlockState state, @NotNull final IBlockDisplayReader reader, @NotNull final BlockPos pos, final int other) {
-        return BiomeColors.getAverageFoliageColor(reader, pos);
+    public int getColor(@NotNull final BlockState state, @NotNull final BlockAndTintGetter getter, @NotNull final BlockPos pos, final int other) {
+        return BiomeColors.getAverageFoliageColor(getter, pos);
     }
 
     @OnlyIn(Dist.CLIENT)

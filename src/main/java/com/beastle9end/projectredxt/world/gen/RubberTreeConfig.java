@@ -2,9 +2,9 @@ package com.beastle9end.projectredxt.world.gen;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-public class RubberTreeConfig implements IFeatureConfig {
+public class RubberTreeConfig implements FeatureConfiguration {
     public static final Codec<RubberTreeConfig> CODEC = RecordCodecBuilder.create(it -> it.group(
             Codec.INT.fieldOf("min_height").forGetter(RubberTreeConfig::getMinHeight),
             Codec.INT.fieldOf("max_height").forGetter(RubberTreeConfig::getMaxHeight),

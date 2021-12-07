@@ -1,17 +1,18 @@
 package com.beastle9end.projectredxt.item;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class BasicBagItem extends BasicItem implements INamedContainerProvider {
-    public BasicBagItem(@NotNull final Properties properties) {
+public abstract class BasicBagItem extends BasicItem implements MenuProvider {
+    public BasicBagItem(@NotNull final Item.Properties properties) {
         super(properties);
     }
 
@@ -20,14 +21,14 @@ public abstract class BasicBagItem extends BasicItem implements INamedContainerP
     }
 
     @Override
-    public @NotNull ActionResult<ItemStack> use(@NotNull final World world, @NotNull final PlayerEntity player, @NotNull final Hand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull final Level level, @NotNull final Player player, @NotNull final InteractionHand hand) {
         final ItemStack stack = player.getMainHandItem();
 
-        if (!world.isClientSide && (player.isShiftKeyDown() || !needsToSneak())) {
-            NetworkHooks.openGui((ServerPlayerEntity) player, this);
-            return ActionResult.success(stack);
+        if (!level.isClientSide && (player.isShiftKeyDown() || !needsToSneak())) {
+            NetworkHooks.openGui((ServerPlayer) player, this);
+            return InteractionResultHolder.success(stack);
         }
 
-        return ActionResult.pass(stack);
+        return InteractionResultHolder.pass(stack);
     }
 }

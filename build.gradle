@@ -11,15 +11,15 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.2.1'
+version = '0.3.0'
 group = 'com.beastle9end.projectredxt'
 archivesBaseName = 'projectredxt'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'official', version: '1.18'
     runs {
         client {
             workingDirectory project.file('run')
@@ -27,7 +27,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                projectredxt {
                     source sourceSets.main
                 }
             }
@@ -39,7 +39,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                projectredxt {
                     source sourceSets.main
                 }
             }
@@ -49,10 +49,10 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'projectredxt', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                projectredxt {
                     source sourceSets.main
                 }
             }
@@ -67,17 +67,17 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.0'
+    minecraft 'net.minecraftforge:forge:1.18-38.0.15'
     implementation group: 'org.jetbrains', name: 'annotations', version: '22.0.0'
 
-    implementation group: 'net.minecraftforge', name: 'Scorge', version: '3.1.3'
-    implementation group: 'codechicken', name: 'CodeChickenLib', version: '1.16.5-4.0.3.434', classifier: 'deobf'
-    implementation group: 'codechicken', name: 'CBMultipart', version: '1.16.5-3.0.2.120', classifier: 'deobf'
-    implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'core')
-    implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'exploration')
-    implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'transmission')
-    implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'illumination')
-    implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'integration')
+    //implementation group: 'net.minecraftforge', name: 'Scorge', version: '3.1.3'
+    //implementation group: 'codechicken', name: 'CodeChickenLib', version: '1.16.5-4.0.3.434', classifier: 'deobf'
+    //implementation group: 'codechicken', name: 'CBMultipart', version: '1.16.5-3.0.2.120', classifier: 'deobf'
+    //implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'core')
+    //implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'exploration')
+    //implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'transmission')
+    //implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'illumination')
+    //implementation fg.deobf(group: 'mrtjp', name: 'ProjectRed', version: '1.16.5-4.11.0-beta-0', classifier: 'integration')
 }
 
 jar {

@@ -2,10 +2,10 @@ package com.beastle9end.projectredxt;
 
 import com.beastle9end.projectredxt.client.ClientRegistry;
 import com.beastle9end.projectredxt.init.ModBlocks;
-import com.beastle9end.projectredxt.init.ModContainers;
 import com.beastle9end.projectredxt.init.ModFeatures;
 import com.beastle9end.projectredxt.init.ModItems;
-import com.beastle9end.projectredxt.itemgroup.ModItemGroup;
+import com.beastle9end.projectredxt.init.ModMenus;
+import com.beastle9end.projectredxt.tab.ModCreativeModTab;
 import com.beastle9end.projectredxt.util.Constants;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 public class ProjectRedExtended {
     public static final Logger LOGGER = LogManager.getLogger();
 
-    public static final ModItemGroup ITEM_GROUP = new ModItemGroup();
+    public static final ModCreativeModTab CREATIVE_MOD_TAB = new ModCreativeModTab();
 
     public ProjectRedExtended() {
         final IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -44,6 +44,6 @@ public class ProjectRedExtended {
 
         ClientRegistry.register();
 
-        ModContainers.registerScreens();
+        ModMenus.registerScreens();
     }
 }

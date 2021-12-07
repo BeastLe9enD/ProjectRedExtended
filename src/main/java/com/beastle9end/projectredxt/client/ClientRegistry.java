@@ -1,19 +1,19 @@
 package com.beastle9end.projectredxt.client;
 
-import com.beastle9end.projectredxt.block.IBlockRenderTypeProvider;
+import com.beastle9end.projectredxt.block.BlockRenderTypeProvider;
 import com.beastle9end.projectredxt.init.ModBlocks;
 import com.beastle9end.projectredxt.init.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.item.Item;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,9 +22,9 @@ import java.util.Collection;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientRegistry {
-    private static final ArrayList<Pair<IItemColor, Item>> blockItems = new ArrayList<>();
+    private static final ArrayList<Pair<ItemColor, Item>> blockItems = new ArrayList<>();
 
-    public static void addBlockItem(@NotNull final IItemColor color, @NotNull final Item item) {
+    public static void addBlockItem(@NotNull final ItemColor color, @NotNull final Item item) {
         blockItems.add(Pair.of(color, item));
     }
 
@@ -35,11 +35,11 @@ public class ClientRegistry {
         for (final RegistryObject<Block> entry : entries) {
             final Block block = entry.get();
 
-            if (!(block instanceof IBlockColor)) {
+            if (!(block instanceof BlockColor)) {
                 continue;
             }
 
-            colors.register((IBlockColor) block, block);
+            colors.register((BlockColor) block, block);
         }
     }
 
@@ -50,14 +50,14 @@ public class ClientRegistry {
         for (final RegistryObject<Item> entry : entries) {
             final Item item = entry.get();
 
-            if (!(item instanceof IItemColor)) {
+            if (!(item instanceof ItemColor)) {
                 continue;
             }
 
-            colors.register((IItemColor) item, item);
+            colors.register((ItemColor) item, item);
         }
 
-        for (final Pair<IItemColor, Item> blockItem : blockItems) {
+        for (final Pair<ItemColor, Item> blockItem : blockItems) {
             colors.register(blockItem.getLeft(), blockItem.getRight());
         }
     }
@@ -67,11 +67,11 @@ public class ClientRegistry {
 
         for (final RegistryObject<Block> entry : entries) {
             final Block block = entry.get();
-            if (!(block instanceof IBlockRenderTypeProvider)) {
+            if (!(block instanceof BlockRenderTypeProvider)) {
                 continue;
             }
 
-            RenderTypeLookup.setRenderLayer(block, ((IBlockRenderTypeProvider) block).getRenderType());
+            ItemBlockRenderTypes.setRenderLayer(block, ((BlockRenderTypeProvider) block).getRenderType());
         }
     }
 
