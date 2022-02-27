@@ -32,14 +32,15 @@ public class RubberLeavesBlock extends LeavesBlock implements IBlockColor, IItem
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState p_149653_1_) {
+    public boolean isRandomlyTicking(@NotNull final BlockState state) {
         return false;
     }
 
     @Override
-    public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
+    public void tick(@NotNull final BlockState state, @NotNull final ServerWorld world, @NotNull final BlockPos pos, @NotNull final Random random) {}
 
-    }
+    @Override
+    public void randomTick(@NotNull final BlockState state, @NotNull final ServerWorld world, @NotNull final BlockPos pos, @NotNull final Random random) {}
 
     @OnlyIn(Dist.CLIENT)
     @Override
