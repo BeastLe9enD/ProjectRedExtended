@@ -1,5 +1,6 @@
 package com.beastle9end.projectredxt.item;
 
+import com.beastle9end.projectredxt.client.IItemColorProvider;
 import com.beastle9end.projectredxt.container.SeedBagContainer;
 import com.beastle9end.projectredxt.util.MathUtils;
 import com.beastle9end.projectredxt.util.NBTUtils;
@@ -22,7 +23,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
-public class SeedBagItem extends BasicBagItem implements IItemColor {
+public class SeedBagItem extends BasicBagItem implements IItemColorProvider {
     private static final int MAX_ITEMS = 9 * 64;
 
     private final DyeColor color;
@@ -134,7 +135,7 @@ public class SeedBagItem extends BasicBagItem implements IItemColor {
     }
 
     @Override
-    public int getColor(@NotNull final ItemStack stack, final int other) {
-        return color.getColorValue();
+    public @NotNull IItemColor getItemColor() {
+        return (stack, other) -> color.getColorValue();
     }
 }

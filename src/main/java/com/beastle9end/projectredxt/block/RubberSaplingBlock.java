@@ -26,7 +26,6 @@ public class RubberSaplingBlock extends BushBlock implements IGrowable, IBlockRe
         return RenderType.cutoutMipped();
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public boolean isValidBonemealTarget(@NotNull final IBlockReader reader, @NotNull final BlockPos pos, @NotNull final BlockState state, final boolean other) {
         return getTreeBasePos(reader, pos) != null;

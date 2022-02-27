@@ -1,19 +1,17 @@
 package com.beastle9end.projectredxt.item;
 
+import com.beastle9end.projectredxt.client.IItemColorProvider;
 import com.beastle9end.projectredxt.container.ImprovedBagContainer;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-public class ImprovedBagItem extends BasicBagItem implements IItemColor {
+public class ImprovedBagItem extends BasicBagItem implements IItemColorProvider {
     private final DyeColor color;
 
     public ImprovedBagItem(@NotNull final DyeColor color) {
@@ -33,8 +31,7 @@ public class ImprovedBagItem extends BasicBagItem implements IItemColor {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public int getColor(@NotNull final ItemStack stack, final int other) {
-        return color.getColorValue();
+    public @NotNull IItemColor getItemColor() {
+        return (stack, other) -> color.getColorValue();
     }
 }

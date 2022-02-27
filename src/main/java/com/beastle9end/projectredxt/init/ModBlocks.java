@@ -3,6 +3,7 @@ package com.beastle9end.projectredxt.init;
 import com.beastle9end.projectredxt.ProjectRedExtended;
 import com.beastle9end.projectredxt.block.*;
 import com.beastle9end.projectredxt.client.ClientRegistry;
+import com.beastle9end.projectredxt.client.IItemColorProvider;
 import com.beastle9end.projectredxt.util.Constants;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -73,11 +74,12 @@ public class ModBlocks {
 
             registry.register(item);
 
-            if (block instanceof IItemColor) {
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                    ClientRegistry.addBlockItem((IItemColor) block, item);
-                });
-            }
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+                if(block instanceof IItemColorProvider) {
+                    final IItemColor color = ((IItemColorProvider)block).getItemColor();
+                    ClientRegistry.addBlockItem(color, item);
+                }
+            });
         }
     }
 }

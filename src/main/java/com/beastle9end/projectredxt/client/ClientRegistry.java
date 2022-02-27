@@ -35,11 +35,12 @@ public class ClientRegistry {
         for (final RegistryObject<Block> entry : entries) {
             final Block block = entry.get();
 
-            if (!(block instanceof IBlockColor)) {
+            if (!(block instanceof IBlockColorProvider)) {
                 continue;
             }
 
-            colors.register((IBlockColor) block, block);
+            final IBlockColor color = ((IBlockColorProvider)block).getBlockColor();
+            colors.register(color, block);
         }
     }
 
@@ -50,11 +51,12 @@ public class ClientRegistry {
         for (final RegistryObject<Item> entry : entries) {
             final Item item = entry.get();
 
-            if (!(item instanceof IItemColor)) {
+            if (!(item instanceof IItemColorProvider)) {
                 continue;
             }
 
-            colors.register((IItemColor) item, item);
+            final IItemColor color = ((IItemColorProvider)item).getItemColor();
+            colors.register(color, item);
         }
 
         for (final Pair<IItemColor, Item> blockItem : blockItems) {
@@ -77,7 +79,6 @@ public class ClientRegistry {
 
     public static void register() {
         registerRenderTypes();
-
         registerBlockColors();
         registerItemColors();
     }

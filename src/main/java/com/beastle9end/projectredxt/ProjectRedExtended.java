@@ -7,9 +7,12 @@ import com.beastle9end.projectredxt.init.ModFeatures;
 import com.beastle9end.projectredxt.init.ModItems;
 import com.beastle9end.projectredxt.itemgroup.ModItemGroup;
 import com.beastle9end.projectredxt.util.Constants;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -26,7 +29,9 @@ public class ProjectRedExtended {
     public ProjectRedExtended() {
         final IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         modBus.addListener(this::onSetup);
-        modBus.addListener(this::onSetupClient);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            modBus.addListener(this::onSetupClient);
+        });
 
         ModBlocks.REGISTRY.register(modBus);
         ModItems.REGISTRY.register(modBus);
@@ -39,6 +44,7 @@ public class ProjectRedExtended {
         LOGGER.info("Setup common");
     }
 
+    @OnlyIn(Dist.CLIENT)
     private void onSetupClient(final FMLClientSetupEvent event) {
         LOGGER.info("Setup client");
 
